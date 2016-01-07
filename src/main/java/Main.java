@@ -27,36 +27,31 @@ public class Main {
 	
     get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            //attributes.put("message", "Hello World!");
-
             return new ModelAndView(attributes, "index.ftl");
         }, new FreeMarkerEngine());
 		
 	
-	//Encountered bug. Second level (/api/cars) could not be accessed until first level(/api) had been called, this forces an early call to init to allow URLs to 
-	// be processed. 
+	//For scope of this project, I did not use externally saved data. 
+	//Because everything is done in JSON format, expanding this functionality would be feasable.
 	
-	//String initial = getinit();
+	//UsersManager class to manage create, update, and delete of users.
 	UsersManager UM = new UsersManager();
-	UM.newUser("a@b.com", "pass1");
-	UM.newUser("c@d.com", "pass2");
-	
+	UM.newUser("123456", "a@b.com", "pass1");
+	UM.newUser("7891011", "c@d.com", "pass2");
+	//CarsManager class to manage create, update and delete of cars.
 	CarsManager CM = new CarsManager();
-	CM.newCar("1", "2", "Mazda", "Six", "2014");
-	CM.newCar("3", "4", "Toyota", "Camry", "2008");
-	new CarsController(CM);
+	CM.newCar("1111111", "123456", "1111111", "Mazda", "Six", "2014");
+	CM.newCar("2222222", "7891011", "2222222", "Toyota", "Camry", "2008");
+	//GaragesManager class to manage create, update, and delete of garages.
+	GaragesManager GM = new GaragesManager();
+	GM.newGarage("1111111", "123456", "Zac's Garage");
+	GM.newGarage("2222222", "7891011", "Jack's Garage");
+	//Controllers for all three Managers. These controllers handle all URL redirections. 
+	//Controllers Take the managers as parameter.
+	new GaragesController(GM);
+	new CarsController(CM, GM);
 	new UsersController(UM);
 	
-	get("/test", (req, res) -> test());
-	
-	//get("/api", (req, res) -> getinit());
-	post("/api", (req, res) -> postinit());
-	put("/api", (req, res) -> putinit());
-	delete("/api", (req, res) -> deleteinit());
-	/*
-	after((req, res) -> {
-			res.type("application/json");
-		});*/
 		
   }
   

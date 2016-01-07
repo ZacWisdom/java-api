@@ -1,5 +1,5 @@
 //package metova.java.test;
-
+/*
 import static spark.Spark.*;
 import spark.*;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -44,4 +44,4 @@ public class initializer{
 	  return "Invalid Delete";
   }
   
-}
+}*/

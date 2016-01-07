@@ -1,4 +1,4 @@
-//package metova.java.test;
+// package metova.java.test;
 
 import java.util.*;
 public class UsersManager{
@@ -8,27 +8,32 @@ public class UsersManager{
 		return new ArrayList<>(users.values());
 	}
 	
-	public User getUser(String id){
-		return users.get(id);
+	public User getUser(String email){
+		return users.get(email);
 	}
 	
 	public User newUser(String email, String password){
+		checkNull(email, password);
 		User user = new User(email, password);
-		users.put(user.getID(), user);
+		users.put(user.getEmail(), user);
 		return user;
 	
 	}
-	/*
-	public User updateUser(String id, String email, String password){
-		//TODO::
-	}*/
 	
-	private void failIfInvalid(String email, String password) {
+	public User newUser(String userID, String email, String password){
+		checkNull(email, password);
+		User user = new User(userID, email, password);
+		users.put(user.getEmail(), user);
+		return user;
+	
+	}
+	
+	private void checkNull(String email, String password) {
 		if (email == null || email.isEmpty()) {
-			throw new IllegalArgumentException("Parameter 'email' cannot be empty");
+			throw new IllegalArgumentException("Email cannot be blank");
 		}
 		if (password == null || password.isEmpty()) {
-			throw new IllegalArgumentException("Parameter 'password' cannot be empty");
+			throw new IllegalArgumentException("Password cannot be blank");
 		}
 	}
 }

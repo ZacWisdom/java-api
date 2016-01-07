@@ -4,29 +4,37 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.UUID;
+//import java.util.UUID;
 
 public class Garage {
+	
+	//Class to hold Garage data. Getters/setters for GARAGE id, userID, name, and timestamp information.
 	private String id;
 	private String userID;
 	private String name;
 	private String createDate;
 	private String updateDate;
 	
-	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	Date date = new Date();
 	
-	public Garage(String userID, String name){
-		this.id = UUID.randomUUID().toString();
+	
+	public Garage(String garageID, String userID, String name){
+		this.id = garageID;
 		this.userID = userID;
 		this.name = name;
-		this.createDate = dateFormat.format(date).toString();
-		this.updateDate = dateFormat.format(date).toString();
+		this.createDate = formattedDate();
+		this.updateDate = formattedDate();
 		
 	}
 	
+	private String formattedDate(){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		
+		return dateFormat.format(date).toString();
+	}
+	
 	public void Update(){
-		this.updateDate = dateFormat.format(date).toString();
+		this.updateDate = formattedDate();
 	}
 	
 	public String getID(){

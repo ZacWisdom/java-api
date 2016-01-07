@@ -4,10 +4,10 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.UUID;
+//import java.util.UUID;
 
 public class Car{
-
+	//Class to hold Car data. Getters/Setters for Car ID, user id, garage id, car make, car model car year, and timestamp information.
 	private String id;
 	private String userID;
 	private String garageID;
@@ -20,10 +20,21 @@ public class Car{
 	
 
 
-	public Car(String userID, String garageID, String make, String model, String year){
-		this.id = UUID.randomUUID().toString();
+	public Car(String carID, String userID, String garageID, String make, String model, String year){
+		this.id = carID;
 		this.userID = userID;
 		this.garageID = garageID;
+		this.make = make;
+		this.model = model;
+		this.year = year;
+		this.createDate = formattedDate();
+		this.updateDate = formattedDate();
+		
+	}
+	
+	public Car(String carID, String userID,  String make, String model, String year){
+		this.id = carID;
+		this.userID = userID;
 		this.make = make;
 		this.model = model;
 		this.year = year;
